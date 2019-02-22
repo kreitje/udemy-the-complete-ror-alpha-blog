@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -12,9 +11,10 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = User.first
 
     if @article.save
-      flash[:success] = "Article was saved."
+      flash[:success] = 'Article was saved.'
       redirect_to article_path(@article)
     else
       render 'new'
@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      flash[:success] = "Article was successfully updated"
+      flash[:success] = 'Article was successfully updated'
       redirect_to article_path(@article)
     else
       render 'edit'
@@ -53,5 +53,4 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :description)
   end
-
 end
