@@ -2,30 +2,4 @@
 
 <%= link_to "Create new article", new_article_path %>
 
-<table class="table">
-    <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th></th>
-    </tr>
-    <% @articles.each do |article| %>
-        <tr>
-            <td><%= article.title %></td>
-            <td>
-                <%= truncate(article.description, length: 100) %>
-                <div class="article-meta-details">
-                    <small>
-                        Created by <%= article.user.username if article.user %>, 
-                        <%= time_ago_in_words(article.created_at) %> ago, 
-                        last updated: <%= time_ago_in_words(article.updated_at) %> ago
-                    </small>
-                </div>
-            </td>
-            <td>
-                <%= link_to "View", article_path(article) %>
-                <%= link_to "Edit", edit_article_path(article) %>
-                <%= link_to "Delete", article_path(article), method: :delete, data: {confirm: 'Are you sure?'} %>
-            </td>
-        </tr>
-    <%end %>
-</table>
+<%= render 'article', obj: @articles %>
