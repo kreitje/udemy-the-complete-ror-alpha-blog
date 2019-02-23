@@ -5,6 +5,7 @@
     </div>
 </div>
 
-<h4 class="center mt-4"><%= @user.username %>'s Articles</h4>
-
-<%= render 'articles/article', obj: @user.articles %>
+<% if @user.articles.count > 0 %>
+    <h4 class="center mt-4"><%= @user.username %>'s Articles</h4>
+    <%= render 'articles/article', obj: @user.articles %>
+<% end %>

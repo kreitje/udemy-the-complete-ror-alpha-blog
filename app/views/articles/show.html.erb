@@ -1,5 +1,13 @@
 <h1><%= @article.title %></h1>
-<div><%= simple_format(@article.description) %></div>
+<div class="row">
+    <div class="col-2 center">
+        <% if @article.user %>
+            <div><%= link_to gravatar_for(@article.user, size: 150), user_path(@article.user) %></div>
+            <%= link_to @article.user.username, user_path(@article.user) %>
+        <% end %>
+    </div>
+    <div class="col-10"><%= simple_format(@article.description) %></div>
+</div>
 
 <div class="article-actions">
     <%= link_to "Edit Article", edit_article_path(@article), class: "btn btn-sm btn-primary" %>
