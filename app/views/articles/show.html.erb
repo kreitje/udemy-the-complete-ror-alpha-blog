@@ -6,7 +6,12 @@
             <%= link_to @article.user.username, user_path(@article.user) %>
         <% end %>
     </div>
-    <div class="col-10"><%= simple_format(@article.description) %></div>
+    <div class="col-10">
+        <%= simple_format(@article.description) %>
+        <% if @article.categories.any? %>
+            <p>Categories: <%= render @article.categories %>
+        <% end %>
+    </div>
 </div>
 
 <div class="article-actions">
